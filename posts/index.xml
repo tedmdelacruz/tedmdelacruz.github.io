@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Ted Mathew dela Cruz - Software Engineer</title>
-    <link>https://tedmdelacruz.github.io/posts/</link>
+    <link>/posts/</link>
     <description>Recent content in Posts on Ted Mathew dela Cruz - Software Engineer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 17 Sep 2019 20:53:24 +0800</lastBuildDate>
     
-	<atom:link href="https://tedmdelacruz.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Test Post</title>
-      <link>https://tedmdelacruz.github.io/posts/test-post/</link>
+      <link>/posts/test-post/</link>
       <pubDate>Tue, 17 Sep 2019 20:53:24 +0800</pubDate>
       
-      <guid>https://tedmdelacruz.github.io/posts/test-post/</guid>
+      <guid>/posts/test-post/</guid>
       <description>Occaecat sit enim eu do proident culpa excepteur deserunt. Officia id ea excepteur quis Lorem. Proident veniam Lorem eiusmod minim incididunt irure ad. Aute esse nostrud in nulla est consequat commodo ea consectetur commodo mollit consequat.</description>
     </item>
     
