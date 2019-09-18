@@ -1,5 +1,9 @@
-baseURL = "https://tedmdelacruz.github.io/"
+baseURL = "/"
 languageCode = "en-us"
 title = "Ted Mathew dela Cruz - Software Engineer"
 theme = "minima"
 publishDir = "."
+
+[params]
+    owner = "Ted Mathew dela Cruz"
+    subtitle = "Software developer at Bukas"
