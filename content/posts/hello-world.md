@@ -1,19 +1,14 @@
 ---
 title: "Hello World"
 date: 2022-05-12T13:06:39+08:00
+author: Ted
 draft: false
 ---
 
 # Hello World
 
-Reprehenderit quis fugiat adipisicing sunt ea et consectetur irure. Occaecat anim aliquip velit nulla est elit cupidatat velit. Mollit labore non consectetur ut minim mollit consectetur cillum aliqua quis mollit. Ex ut cillum ea reprehenderit aute cupidatat pariatur quis ad amet.
+This is a new space for me to write about tech. Thanks to [GitHub Pages](https://pages.github.com/) and [Hugo](https://gohugo.io/) I'm able to this up without spending a single dollar. 
 
-## Sample Code
+I'm working on so lots stuff -- hunting security vulnerabilities (and hopefully get paid for it) on [Hackerone](https://www.hackerone.com/) and [Bugcrowd](https://www.bugcrowd.com/), learning Go for my tooling, honing my shell scripting skillz, and modding my mechanical keyboards.
 
-```py
-class Foo:
-
-	def greet():
-		return "Hello world!"
-
-```
+I'll write about these soon!
