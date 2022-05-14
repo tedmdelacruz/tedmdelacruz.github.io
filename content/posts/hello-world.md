@@ -3,6 +3,7 @@ title: "Hello World"
 date: 2022-05-12T13:06:39+08:00
 author: ted
 draft: false
+summary: This is a new space for me to write about tech. Thanks to GitHub Pages and Hugo I’m able set to this up without spending a single dollar.
 ---
 
 This is a new space for me to write about tech. Thanks to [GitHub Pages](https://pages.github.com/) and [Hugo](https://gohugo.io/) I'm able set to this up without spending a single dollar. 
