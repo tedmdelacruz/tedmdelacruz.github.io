@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Remote code execution in a billion-dollar publicly traded company &middot; tedmdelacruz</title>
+
+		
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" href="/favicon.ico"/>
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="tedmdelacruz" />
+
+		<script src="/js/darkmode.js"></script>
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					
+						<h2 class="nav-title">tedmdelacruz</h2>
+					
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        <div id="darkModeToggle" onclick="toggleDarkMode()">
+  &#9680; 
+</div>
+
+        
+
+<main>
+	
+
+
+        <div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        ted
+        <br>
+        <span>on&nbsp;</span><time datetime="2024-02-14 21:43:57 &#43;0800 &#43;08">February 14, 2024</time>
+</div>
+
+		<h1 class="post-title">Remote code execution in a billion-dollar publicly traded company</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>There are 4 things that have to happen in order to find <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22621">CVE-2023-22621</a> in the wild:</p>
+<ul>
+<li>You need to find a website that is powered by <a href="https://strapi.io">Strapi</a>.</li>
+<li>The <em>super admin</em> for this website, <em>somehow</em>, <strong>has not been claimed yet</strong>.</li>
+<li>The version of Strapi should be <em>at least</em> <strong>version 4.5.5 and below</strong>.</li>
+<li>No other hacker <em>somehow</em> saw any of the three aformentioned scenarios first.</li>
+</ul>
+<p>The stars have aligned in my favor and I found exactly that in one of the websites of a <em>billion</em> dollar company listed in the New York Stock Exchange. And I happen to be invited to their private <a href="https://en.wikipedia.org/wiki/Bug_bounty_program">bug bounty program</a>.</p>
+<h2 id="reconnaisance">Reconnaisance</h2>
+<p>I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.</p>
+<p>Usually I don&rsquo;t find anything in my probes, and this one: <strong>strapi.[redacted].com</strong> also didn&rsquo;t trigger any alarms at first.
+My automations pinged me about the subdomain of this website around early December 2023, but this website caught my attention during a manual inspection of the company assets that I did around early February 2024.</p>
+<p>I couldn&rsquo;t believe it at first, but the <em>super admin</em> registration for this website was open. And <em>somehow</em>, no other hacker has seen this before me:</p>
+<p><img src="/admin-registration.PNG" alt="Admin Registration"></p>
+<p>Realizing this, was nothing short of exhilariting, since it&rsquo;s been months since I got a paid bug bounty.</p>
+<h2 id="escalation">Escalation</h2>
+<p>Claiming the super admin of a website is nice and dandy, but like most other security researchers, I asked myself: &ldquo;How can I escalate this to something even more severe?&quot;.</p>
+<p>The next step was obvious, I googled the following: &ldquo;strapi cve&rdquo;. One CVE instantly caught my attention: <strong><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22621">CVE-2023-22621</a></strong></p>
+<p>It ticks all of the boxes:</p>
+<ul>
+<li>You need to have super admin access (I got that) ✔</li>
+<li>The version of Strapi should be 4.5.5 and below (This website is on Strapi v3.6.0) ✔</li>
+</ul>
+<h2 id="remote-code-execution">Remote code execution</h2>
+<p><em>WIP</em></p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/remote-ok/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2024-02-14 22:25:22.6653734 &#43;0800 &#43;08 m=&#43;0.400833701">2024</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
