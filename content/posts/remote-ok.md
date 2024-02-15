@@ -2,7 +2,7 @@
 title: "Hire me"
 date: 2022-05-14T16:19:45+08:00
 author: ted
-draft: false 
+draft: true
 ---
 
 Signed up for an [RemoteOK](https://remoteok.com/@tedmdelacruz) account. I love their simple, straightforward user experience.

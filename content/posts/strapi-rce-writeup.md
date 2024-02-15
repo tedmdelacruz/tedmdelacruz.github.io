@@ -2,7 +2,7 @@
 title: "Remote code execution in a billion-dollar publicly traded company"
 date: 2024-02-14T21:43:57+08:00
 author: ted
-draft: false 
+draft: true
 ---
 
 There are 4 things that have to happen in order to find [CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621) in the wild:
