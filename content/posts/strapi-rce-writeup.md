@@ -12,7 +12,7 @@ There are 4 things that have to happen in order to find [CVE-2023-22621](https:/
 - The version of Strapi should be _at least_ **version 4.5.5 and below**.
 - No other hacker _somehow_ saw any of the three aformentioned scenarios first.
 
-The stars have 0ligned in my favor and I found exactly that in one of the websites of a _billion_ dollar company listed in the New York Stock Exchange. And I happen to be invited to their private [bug bounty program](https://en.wikipedia.org/wiki/Bug_bounty_program).
+The stars have aligned in my favor and I found exactly that in one of the websites of a _billion_ dollar company listed in the New York Stock Exchange. And I happen to be invited to their private [bug bounty program](https://en.wikipedia.org/wiki/Bug_bounty_program).
 
 ## Reconnaisance
 I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.
