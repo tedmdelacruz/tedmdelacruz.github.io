@@ -18,7 +18,7 @@
       
       <guid>https://tedmdelacruz.github.io/posts/strapi-rce-writeup/</guid>
       <description>There are 4 things that have to happen in order to find CVE-2023-22621 in the wild:
- You need to find a website that is powered by Strapi. The super admin for this website, somehow, has not been claimed yet. The version of Strapi should be at least version 4.5.5 and below. No other hacker somehow saw any of the three aformentioned scenarios first.  The stars have aligned in my favor and I found exactly that in one of the websites of a billion dollar company listed in the New York Stock Exchange.</description>
+ You need to find a website that is powered by Strapi. The super admin for this website, somehow, has not been claimed yet. The version of Strapi should be at least version 4.5.5 and below. No other hacker somehow saw any of the three aformentioned scenarios first.  The stars have aligned in my favor and with this CVE, I managed to fully take over one of the websites of a billion dollar company listed in the New York Stock Exchange.</description>
     </item>
     
     <item>

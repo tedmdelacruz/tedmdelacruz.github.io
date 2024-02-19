@@ -12,7 +12,7 @@ There are 4 things that have to happen in order to find [CVE-2023-22621](https:/
 - The version of Strapi should be _at least_ **version 4.5.5 and below**.
 - No other hacker _somehow_ saw any of the three aformentioned scenarios first.
 
-The stars have aligned in my favor and I found exactly that in one of the websites of a _billion_ dollar company listed in the New York Stock Exchange. And I happen to be invited to their private [bug bounty program](https://en.wikipedia.org/wiki/Bug_bounty_program).
+The stars have aligned in my favor and with this [CVE](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures), I managed to fully take over one of the websites of a _billion_ dollar company listed in the New York Stock Exchange. And I happen to be invited to their private [bug bounty program](https://en.wikipedia.org/wiki/Bug_bounty_program).
 
 # Exploitation
 I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.
@@ -30,7 +30,7 @@ Realizing this, was nothing short of exhilariting, since it's been months since 
 
 Claiming the super admin of a website is nice and dandy, but like most other security researchers, I asked myself: "How can I escalate this to something even more severe?".
 
-The next step was obvious, I googled: "strapi cve". One particular [CVE](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures) instantly caught my attention: **[CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621)** which allows for an authenicated user to execute the highly coveted **[_remote code execution_](https://en.wikipedia.org/wiki/Arbitrary_code_execution).**
+The next step was obvious, I googled: "strapi cve". One particular CVE instantly caught my attention: **[CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621)** which allows for an authenicated user to execute the highly coveted **[_remote code execution_](https://en.wikipedia.org/wiki/Arbitrary_code_execution).**
 
 The CVE ticks all of the boxes:
 - You need to have super admin access (I got that) ✔
@@ -79,7 +79,7 @@ This exploit runs when a confirmation email is sent, so an API call that registe
 $ curl -vvv -X POST -H 'Content-Type: application/json' -d '{"email":"tedminfosec+rce1@gmail.com", "username":"rcetrigger1", "password": "Test1234!"}' https://strapi.[redacted].com/auth/local/register/
 ```
 
-Upon execution of the cURL command, Strapi attempts to validate the email template. The exploit then takes advantage of a template validation bypass and `runs the reverse shell payload via `node`. The reverse shell then initiates a TCP connection to my attacker server, which spawns a `bash` session.
+Upon execution of the cURL command, Strapi attempts to validate the email template. The exploit then takes advantage of a template validation bypass and runs the reverse shell payload via `node`. The reverse shell then initiates a TCP connection to my attacker server, which spawns a `bash` session.
 
 Now the attacker machine has logged in to the server as `root`, **giving me total control of the server**:
 

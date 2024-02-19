@@ -68,7 +68,7 @@
 <li>The version of Strapi should be <em>at least</em> <strong>version 4.5.5 and below</strong>.</li>
 <li>No other hacker <em>somehow</em> saw any of the three aformentioned scenarios first.</li>
 </ul>
-<p>The stars have aligned in my favor and I found exactly that in one of the websites of a <em>billion</em> dollar company listed in the New York Stock Exchange. And I happen to be invited to their private <a href="https://en.wikipedia.org/wiki/Bug_bounty_program">bug bounty program</a>.</p>
+<p>The stars have aligned in my favor and with this <a href="https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures">CVE</a>, I managed to fully take over one of the websites of a <em>billion</em> dollar company listed in the New York Stock Exchange. And I happen to be invited to their private <a href="https://en.wikipedia.org/wiki/Bug_bounty_program">bug bounty program</a>.</p>
 <h1 id="exploitation">Exploitation</h1>
 <p>I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.</p>
 <p>Usually I don&rsquo;t find anything in my probes, and this one: <strong>strapi.[redacted].com</strong> also didn&rsquo;t trigger any alarms at first.
@@ -78,7 +78,7 @@ My automations pinged me about the subdomain of this website around early Decemb
 <p>Realizing this, was nothing short of exhilariting, since it&rsquo;s been months since I got a paid bug bounty.</p>
 <h1 id="escalation">Escalation</h1>
 <p>Claiming the super admin of a website is nice and dandy, but like most other security researchers, I asked myself: &ldquo;How can I escalate this to something even more severe?&quot;.</p>
-<p>The next step was obvious, I googled: &ldquo;strapi cve&rdquo;. One particular <a href="https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures">CVE</a> instantly caught my attention: <strong><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22621">CVE-2023-22621</a></strong> which allows for an authenicated user to execute the highly coveted <strong><a href="https://en.wikipedia.org/wiki/Arbitrary_code_execution"><em>remote code execution</em></a>.</strong></p>
+<p>The next step was obvious, I googled: &ldquo;strapi cve&rdquo;. One particular CVE instantly caught my attention: <strong><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22621">CVE-2023-22621</a></strong> which allows for an authenicated user to execute the highly coveted <strong><a href="https://en.wikipedia.org/wiki/Arbitrary_code_execution"><em>remote code execution</em></a>.</strong></p>
 <p>The CVE ticks all of the boxes:</p>
 <ul>
 <li>You need to have super admin access (I got that) ✔</li>
@@ -111,7 +111,7 @@ My automations pinged me about the subdomain of this website around early Decemb
 ls
 api    config      favicon.ico   package.json  README.md
 build  extensions  node_modules  public        yarn.lock
-</code></pre></div><p>In order to prove the RCE, I left an inconspicuous text file in the server. So I left one at <code>/root/tedminfosec.txt</code>:</p>
+</code></pre></div><p>In order to prove the RCE, I left an inconspicuous text file in the server at <code>/root/tedminfosec.txt</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">root@<span style="color:#f92672">[</span>redacted<span style="color:#f92672">]</span>:/home/<span style="color:#f92672">[</span>redacted<span style="color:#f92672">]</span>/project/strapi# cat /root/tedminfosec.txt
 hello from tedminfosec@wearehackerone.com
 </code></pre></div><h1 id="impact">Impact</h1>
@@ -138,7 +138,7 @@ hello from tedminfosec@wearehackerone.com
         		<footer>
 			
 			<span>
-			&copy; <time datetime="2024-02-19 13:32:42.4326394 &#43;0800 &#43;08 m=&#43;0.304749101">2024</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2024-02-19 14:44:24.3683721 &#43;0800 &#43;08 m=&#43;0.304057101">2024</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 
