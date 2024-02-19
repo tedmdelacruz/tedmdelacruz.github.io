@@ -1,6 +1,6 @@
 ---
 title: "Remote code execution in a billion-dollar publicly traded company"
-date: 2024-02-14T21:43:57+08:00
+date: 2024-02-10T21:43:57+08:00
 author: ted
 draft: false
 ---
@@ -12,7 +12,7 @@ There are 4 things that have to happen in order to find [CVE-2023-22621](https:/
 - The version of Strapi should be _at least_ **version 4.5.5 and below**.
 - No other hacker _somehow_ saw any of the three aformentioned scenarios first.
 
-The stars have aligned in my favor and I found exactly that in one of the websites of a _billion_ dollar company listed in the New York Stock Exchange. And I happen to be invited to their private [bug bounty program](https://en.wikipedia.org/wiki/Bug_bounty_program).
+The stars have 0ligned in my favor and I found exactly that in one of the websites of a _billion_ dollar company listed in the New York Stock Exchange. And I happen to be invited to their private [bug bounty program](https://en.wikipedia.org/wiki/Bug_bounty_program).
 
 ## Reconnaisance
 I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.
@@ -42,14 +42,14 @@ The CVE allows for a remote code execution via a [reverse shell](https://wiki.ub
 
 ### Preparing the attacker server
 
-I spun up a small Digital Ocean droplet and using [netcat](https://en.wikipedia.org/wiki/Netcat) I had it listen to incoming TCP connections in port `1234`:
+I whipped up a small Digital Ocean droplet and using [netcat](https://en.wikipedia.org/wiki/Netcat) I had it listen to incoming TCP connections in port `1234`:
 
 ```sh
 $ nc -lvnp 1234
 ```
 
 - `-l` Instructs `netcat` to listen for incoming TCP connection rather than initiating a connection to a remote host.
-- `-v` Produces more verbouse output.
+- `-v` Produces more verbose output.
 - `-n` Toggles `netcat` to not do any DNS or service lookups.
 - `-p` Specifies the port to listen to.
 
