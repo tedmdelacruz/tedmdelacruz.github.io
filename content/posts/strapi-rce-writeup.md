@@ -53,7 +53,7 @@ $ nc -lvnp 1234
 - `-n` Toggles `netcat` to not do any DNS or service lookups.
 - `-p` Specifies the port to listen to.
 
-### Preparing the reverse shell payload
+### Executing the reverse shell payload
 
 The reverse shell payload that worked for me after initial tests in my local network was the following:
 
@@ -70,6 +70,8 @@ Combining this with the NodeJs exploit described in the CVE, we get the followin
 Now, [CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621) exploits a email template bypass in Strapi. Simply put, it runs when an attempt to send an email is sent. The initial configuration of Strapi allows admins to update the email confirmation template. This is where the payload is saved:
 
 ![Strapi RCE payload](/strapi-rce-payload.PNG)
+
+### Exploitation
 
 This exploit runs when a confirmation email is sent, so an API call that registers a new user to Strapi in order to execute the reverse shell is needed. This is a basic cURL command for that purpose:
 
@@ -95,7 +97,7 @@ root@[redacted]:/home/[redacted]/project/strapi# cat /root/tedminfosec.txt
 hello from tedminfosec@wearehackerone.com
 ```
 
-## Reporting the bug
+## Responsible disclosure
 
 Once that's done, I took my time to write a detailed vulnerability report and submitted it to the bug bounty program. It was triaged as **Critical**:
 
