@@ -8,12 +8,17 @@
   </url>
   
   <url>
-    <loc>https://tedmdelacruz.github.io/posts/hello-world/</loc>
-    <lastmod>2022-05-12T13:06:39+08:00</lastmod>
+    <loc>https://tedmdelacruz.github.io/posts/</loc>
+    <lastmod>2024-02-14T21:43:57+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tedmdelacruz.github.io/posts/</loc>
+    <loc>https://tedmdelacruz.github.io/posts/strapi-rce-writeup/</loc>
+    <lastmod>2024-02-14T21:43:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tedmdelacruz.github.io/posts/hello-world/</loc>
     <lastmod>2022-05-12T13:06:39+08:00</lastmod>
   </url>
   
