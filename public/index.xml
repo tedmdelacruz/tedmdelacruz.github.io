@@ -14,7 +14,7 @@
     <item>
       <title>Remote code execution in a billion-dollar publicly traded company</title>
       <link>https://tedmdelacruz.github.io/posts/strapi-rce-writeup/</link>
-      <pubDate>Wed, 14 Feb 2024 21:43:57 +0800</pubDate>
+      <pubDate>Sat, 10 Feb 2024 21:43:57 +0800</pubDate>
       
       <guid>https://tedmdelacruz.github.io/posts/strapi-rce-writeup/</guid>
       <description>There are 4 things that have to happen in order to find CVE-2023-22621 in the wild:
