@@ -14,7 +14,7 @@ There are 4 things that have to happen in order to find [CVE-2023-22621](https:/
 
 The stars have aligned in my favor and I found exactly that in one of the websites of a _billion_ dollar company listed in the New York Stock Exchange. And I happen to be invited to their private [bug bounty program](https://en.wikipedia.org/wiki/Bug_bounty_program).
 
-## Reconnaisance
+# Exploitation
 I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.
 
 Usually I don't find anything in my probes, and this one: **strapi.[redacted].com** also didn't trigger any alarms at first.
@@ -26,7 +26,7 @@ I couldn't believe it at first, but the _super admin_ registration for this webs
 
 Realizing this, was nothing short of exhilariting, since it's been months since I got a paid bug bounty.
 
-## Escalation
+# Escalation
 
 Claiming the super admin of a website is nice and dandy, but like most other security researchers, I asked myself: "How can I escalate this to something even more severe?".
 
@@ -36,11 +36,11 @@ The CVE ticks all of the boxes:
 - You need to have super admin access (I got that) ✔
 - The version of Strapi should be 4.5.5 and below (This website is on Strapi v3.6.0) ✔
 
-## Remote code execution
+# Remote code execution
 
 The CVE allows for a remote code execution via a [reverse shell](https://wiki.ubuntu.com/ReverseShell), which requires an attacker server waiting for incoming TCP connection from a victim server.
 
-### Preparing the attacker server
+## Preparing the attacker server
 
 I whipped up a small Digital Ocean droplet and using [netcat](https://en.wikipedia.org/wiki/Netcat) I had it listen to incoming TCP connections in port `1234`:
 
@@ -53,7 +53,7 @@ $ nc -lvnp 1234
 - `-n` Toggles `netcat` to not do any DNS or service lookups.
 - `-p` Specifies the port to listen to.
 
-### Executing the reverse shell payload
+## Executing the reverse shell payload
 
 The reverse shell payload that worked for me after initial tests in my local network was the following:
 
@@ -71,7 +71,7 @@ Now, [CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621) exploits 
 
 ![Strapi RCE payload](/strapi-rce-payload.PNG)
 
-### Exploitation
+## Spawning a shell as `root` in the compromised server
 
 This exploit runs when a confirmation email is sent, so an API call that registers a new user to Strapi in order to execute the reverse shell is needed. This is a basic cURL command for that purpose:
 
@@ -97,7 +97,7 @@ root@[redacted]:/home/[redacted]/project/strapi# cat /root/tedminfosec.txt
 hello from tedminfosec@wearehackerone.com
 ```
 
-## Impact
+# Impact
 
 Without disclosing too much about the compromised server, it contains highly sensitive keys and secrets that would have allowed a malicious actor to pivot to other, more sensitive assets in the internal network of the company.
 
@@ -105,7 +105,7 @@ The malicious actor could have done more than just defacing a website or use it 
 
 Since privilege escalation at this point would break the _rules of engagement_, I decided to stop testing from there.
 
-## Responsible disclosure
+# Responsible disclosure
 
 Once that's done, I took my time to write a detailed vulnerability report and submitted it to the bug bounty program. It was triaged as **Critical**:
 
