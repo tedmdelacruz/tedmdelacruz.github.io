@@ -16,7 +16,8 @@ The stars have aligned in my favor, and with this [CVE](https://en.wikipedia.org
 
 And I happen to be invited to their private [bug bounty program](https://en.wikipedia.org/wiki/Bug_bounty_program).
 
-# Exploitation
+# Reconnaissance
+
 I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.
 
 Usually I don't find anything in my probes, and this one: **strapi.[redacted].com** also didn't trigger any alarms at first.
@@ -38,7 +39,7 @@ The CVE ticks all of the boxes:
 - You need to have super admin access (I got that) ✔
 - The version of Strapi should be 4.5.5 and below (This website is on Strapi v3.6.0) ✔
 
-# Remote code execution
+# Exploitation
 
 The CVE allows for a remote code execution via a [reverse shell](https://wiki.ubuntu.com/ReverseShell), which requires an attacker server waiting for incoming TCP connection from a victim server.
 
