@@ -97,6 +97,14 @@ root@[redacted]:/home/[redacted]/project/strapi# cat /root/tedminfosec.txt
 hello from tedminfosec@wearehackerone.com
 ```
 
+## Impact
+
+Without disclosing too much about the compromised server, it contains highly sensitive keys and secrets that would have allowed a malicious actor to pivot to other, more sensitive assets in the internal network of the company.
+
+The malicious actor could have done more than just defacing a website or use it to launch phishing campaigns.
+
+Since privilege escalation at this point would break the _rules of engagement_, I decided to stop testing from there.
+
 ## Responsible disclosure
 
 Once that's done, I took my time to write a detailed vulnerability report and submitted it to the bug bounty program. It was triaged as **Critical**:
