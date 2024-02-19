@@ -79,7 +79,7 @@ This exploit runs when a confirmation email is sent, so an API call that registe
 $ curl -vvv -X POST -H 'Content-Type: application/json' -d '{"email":"tedminfosec+rce1@gmail.com", "username":"rcetrigger1", "password": "Test1234!"}' https://strapi.[redacted].com/auth/local/register/
 ```
 
-Upon execution of the cURL command, Strapi attempts to validate the email template. The exploit then takes advantage of a template validation bypass runs the reverse shell payload via `node`. The reverse shell then creates a TCP connection to my attacker server, which spawns a `bash` session.
+Upon execution of the cURL command, Strapi attempts to validate the email template. The exploit then takes advantage of a template validation bypass runs the reverse shell payload via `node`. The reverse shell then initiates a TCP connection to my attacker server, which spawns a `bash` session.
 
 Now the attacker machine has logged in to the server as `root`, **giving me total control of the server**:
 
