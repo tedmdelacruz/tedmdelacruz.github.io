@@ -27,7 +27,7 @@ My automations pinged me about the subdomain of this website around early Decemb
 
 I couldn't believe it at first, but the _super admin_ registration for this website was open. And _somehow_, no other hacker had seen this before me:
 
-![Admin Registration](/admin-registration.PNG)
+![Admin Registration](/strapi-rce-admin.PNG)
 
 Realizing this was nothing short of exhilarating, since it’s been months since I got a paid bug bounty.
 
