@@ -1,0 +1,3 @@
+[submodule "themes/tale"]
+	path = themes/tale
+	url = git@github.com:tedmdelacruz/tale-hugo.git

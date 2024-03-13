@@ -4,3 +4,4 @@ title = "tedmdelacruz"
 theme = "tale"
 [params]
   subtitle = "Software developer and cybersecurity researcher based in Manila, PH"
+  css = ["styles.css"]
