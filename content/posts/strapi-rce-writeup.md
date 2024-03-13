@@ -5,7 +5,9 @@ author: ted
 draft: false
 ---
 
-There are 4 things that have to happen in order to find [CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621) in the wild:
+![Thumbnail](/strapi-rce-thumbnail.PNG)
+
+There are 4 things that need to happen in order to find [CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621) in the wild:
  
 - You need to find a website that is powered by [Strapi](https://strapi.io).
 - The _super admin_ for this website, _somehow_, **has not been claimed yet**.
