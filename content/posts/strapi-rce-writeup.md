@@ -3,7 +3,7 @@ title: "Remote code execution in a billion-dollar publicly traded company"
 date: 2024-02-10T21:43:57+08:00
 author: ted
 draft: false
-thumbnail: https://tedmdelacruz.github.io/strapi-rce-thumbnail.PNG
+thumbnail: https://tedmdelacruz.github.io/strapi-rce-thumbnail.PNG?t=123
 ---
 
 ![Thumbnail](/strapi-rce-thumbnail.PNG)
