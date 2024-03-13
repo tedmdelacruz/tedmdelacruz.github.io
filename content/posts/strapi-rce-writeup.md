@@ -6,6 +6,8 @@ draft: false
 thumbnail: https://tedmdelacruz.github.io/strapi-rce-thumbnail.jpg
 ---
 
+![Thumbnail](/strapi-rce-thumbnail.jpg)
+
 There are 4 things that need to happen in order to find [CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621) in the wild:
  
 - You need to find a website that is powered by [Strapi](https://strapi.io).
