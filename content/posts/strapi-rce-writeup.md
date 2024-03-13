@@ -3,10 +3,8 @@ title: "Remote code execution in a billion-dollar publicly traded company"
 date: 2024-02-10T21:43:57+08:00
 author: ted
 draft: false
-thumbnail: https://tedmdelacruz.github.io/strapi-rce-thumbnail.PNG?t=123
+thumbnail: https://tedmdelacruz.github.io/strapi-rce-thumbnail.jpg
 ---
-
-![Thumbnail](/strapi-rce-thumbnail.PNG)
 
 There are 4 things that need to happen in order to find [CVE-2023-22621](https://nvd.nist.gov/vuln/detail/CVE-2023-22621) in the wild:
  
