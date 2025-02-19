@@ -1,8 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tedmdelacruz</title><link>https://tedmdelacruz.github.io/</link><description>Recent content on tedmdelacruz</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 15 Feb 2024 13:18:56 +0800</lastBuildDate><atom:link href="https://tedmdelacruz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>$ whoami</title><link>https://tedmdelacruz.github.io/posts/whoami/</link><pubDate>Mon, 19 Feb 2024 14:53:05 +0800</pubDate><guid>https://tedmdelacruz.github.io/posts/whoami/</guid><description>Hello there.
-I&amp;rsquo;m Ted Mathew dela Cruz, a software developer at Bukas.PH, helping Filipino and Indonesian youth attain higher education through student loans.
-I&amp;rsquo;m also a white-hat, independent cybersecurity researcher. I legally hack corporations with their permission during my free time.
-Education:
-BS in Computer Science with Specialization in Software Engineering – De La Salle University
-Previous roles:
-Freelancer.com - Software Engineer YOYO Holdings, Inc. - Senior Software Engineer Galleon.</description></item><item><title>Remote code execution in a billion-dollar publicly traded company</title><link>https://tedmdelacruz.github.io/posts/strapi-rce-writeup/</link><pubDate>Sat, 10 Feb 2024 21:43:57 +0800</pubDate><guid>https://tedmdelacruz.github.io/posts/strapi-rce-writeup/</guid><description>There are 4 things that need to happen in order to find CVE-2023-22621 in the wild:
-You need to find a website that is powered by Strapi. The super admin for this website, somehow, has not been claimed yet. The version of Strapi should be at least 4.5.5 and below. No other hacker had somehow seen any of the three aforementioned scenarios first. The stars have aligned in my favor, and with this CVE, I managed to fully take over one of the websites of a billion-dollar company listed on the New York Stock Exchange.</description></item><item><title>Hello World</title><link>https://tedmdelacruz.github.io/posts/hello-world/</link><pubDate>Thu, 12 May 2022 13:06:39 +0800</pubDate><guid>https://tedmdelacruz.github.io/posts/hello-world/</guid><description>This is a new space for me to write about tech. Thanks to GitHub Pages and Hugo I’m able set to this up without spending a single dollar.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tedmdelacruz</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on tedmdelacruz</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Feb 2024 21:43:57 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remote code execution in a billion-dollar publicly traded company</title>
+      <link>http://localhost:1313/posts/strapi-rce-writeup/</link>
+      <pubDate>Sat, 10 Feb 2024 21:43:57 +0800</pubDate>
+      <guid>http://localhost:1313/posts/strapi-rce-writeup/</guid>
+      <description>How I &lt;em&gt;legally&lt;/em&gt; hacked a billion-dollar company with their permission - &lt;em&gt;with the highest severity&lt;/em&gt; &amp;hellip;</description>
+    </item>
+    <item>
+      <title>&gt; whoami</title>
+      <link>http://localhost:1313/posts/whoami/</link>
+      <pubDate>Wed, 19 Jul 2023 14:53:05 +0800</pubDate>
+      <guid>http://localhost:1313/posts/whoami/</guid>
+      <description>I&amp;rsquo;m &lt;strong&gt;Ted Mathew dela Cruz&lt;/strong&gt;, a software developer at Bukas.PH &amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

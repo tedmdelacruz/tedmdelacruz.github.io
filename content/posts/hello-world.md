@@ -2,7 +2,7 @@
 title: "Hello World"
 date: 2022-05-12T13:06:39+08:00
 author: Ted Mathew dela Cruz
-draft: false
+draft: true
 summary: This is a new space for me to write about tech. Thanks to GitHub Pages and Hugo I’m able set to this up without spending a single dollar.
 ---
 

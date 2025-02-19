@@ -3,6 +3,7 @@ title: "Remote code execution in a billion-dollar publicly traded company"
 date: 2024-02-10T21:43:57+08:00
 author: Ted Mathew dela Cruz
 draft: false
+summary: How I _legally_ hacked a billion-dollar company with their permission - _with the highest severity_ ...
 thumbnail: https://tedmdelacruz.github.io/strapi-rce-thumbnail.jpg
 ---
 
