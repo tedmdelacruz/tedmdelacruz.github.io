@@ -3,6 +3,19 @@ languageCode = "en-us"
 googleAnalytics = "G-59X131RVLB"
 title = "tedmdelacruz"
 theme = "tale"
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    title = "About"
+    url = "/whoami/"
+    weight = 0
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    title = "Posts"
+    url = "/posts/"
+    weight = 0
 [params]
   subtitle = "Software developer and cybersecurity researcher based in Manila, PH"
   css = ["styles.css"]

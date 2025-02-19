@@ -6,28 +6,14 @@
     <description>Recent content in Posts on tedmdelacruz</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Feb 2024 14:53:05 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 10 Feb 2024 21:43:57 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>$ whoami</title>
-      <link>http://localhost:1313/posts/whoami/</link>
-      <pubDate>Mon, 19 Feb 2024 14:53:05 +0800</pubDate>
-      <guid>http://localhost:1313/posts/whoami/</guid>
-      <description>&lt;p&gt;Hello there.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m &lt;strong&gt;Ted Mathew dela Cruz&lt;/strong&gt;, a software developer at Bukas.PH, helping Filipino and Indonesian youth attain higher education through student loans.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m also a white-hat, independent cybersecurity researcher. I &lt;em&gt;legally&lt;/em&gt; hack corporations with their permission during my free time.&lt;/p&gt;&#xA;&lt;p&gt;Companies have rewarded me for finding vulnerabilities in their assets through the HackerOne bug bounty platform.&lt;/p&gt;&#xA;&lt;p&gt;I also had the privilege of tinkering with AI using OpenAI and LangChain to empower small teams in their workflow.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>Remote code execution in a billion-dollar publicly traded company</title>
       <link>http://localhost:1313/posts/strapi-rce-writeup/</link>
       <pubDate>Sat, 10 Feb 2024 21:43:57 +0800</pubDate>
       <guid>http://localhost:1313/posts/strapi-rce-writeup/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/strapi-rce-thumbnail.jpg&#34; alt=&#34;Thumbnail&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;There are 4 things that need to happen in order to find &lt;a href=&#34;https://nvd.nist.gov/vuln/detail/CVE-2023-22621&#34;&gt;CVE-2023-22621&lt;/a&gt; in the wild:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You need to find a website that is powered by &lt;a href=&#34;https://strapi.io&#34;&gt;Strapi&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;The &lt;em&gt;super admin&lt;/em&gt; for this website, &lt;em&gt;somehow&lt;/em&gt;, &lt;strong&gt;has not been claimed yet&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;The version of Strapi should be &lt;em&gt;at least&lt;/em&gt; &lt;strong&gt;4.5.5 and below&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;No other hacker had &lt;em&gt;somehow&lt;/em&gt; seen any of the three aforementioned scenarios first.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The stars have aligned in my favor, and with this &lt;a href=&#34;https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures&#34;&gt;CVE&lt;/a&gt;, I managed to fully take over one of the websites of a &lt;strong&gt;billion-dollar company listed on the New York Stock Exchange&lt;/strong&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Hello World</title>
-      <link>http://localhost:1313/posts/hello-world/</link>
-      <pubDate>Thu, 12 May 2022 13:06:39 +0800</pubDate>
-      <guid>http://localhost:1313/posts/hello-world/</guid>
-      <description>This is a new space for me to write about tech. Thanks to GitHub Pages and Hugo I’m able set to this up without spending a single dollar.</description>
+      <description>How I &lt;em&gt;legally&lt;/em&gt; hacked a billion-dollar company with their permission - &lt;em&gt;with the highest severity&lt;/em&gt; &amp;hellip;</description>
     </item>
   </channel>
 </rss>

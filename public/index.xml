@@ -17,9 +17,9 @@
     </item>
     <item>
       <title>&gt; whoami</title>
-      <link>http://localhost:1313/posts/whoami/</link>
+      <link>http://localhost:1313/whoami/</link>
       <pubDate>Wed, 19 Jul 2023 14:53:05 +0800</pubDate>
-      <guid>http://localhost:1313/posts/whoami/</guid>
+      <guid>http://localhost:1313/whoami/</guid>
       <description>I&amp;rsquo;m &lt;strong&gt;Ted Mathew dela Cruz&lt;/strong&gt;, a software developer at Bukas.PH &amp;hellip;</description>
     </item>
   </channel>
