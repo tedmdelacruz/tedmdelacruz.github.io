@@ -8,7 +8,7 @@ thumbnail: https://tedmdelacruz.github.io/users-endpoint-thumbnail.jpg
 
 ![Thumbnail](/users-endpoint-thumbnail.jpg)
 
-> Revisiting some of my old reports at HackerOne. This particular report dates back October 2022, one of my first paid bounties. And surprisingly it was not even a very technical one.
+> Revisiting some of my old reports at HackerOne. This particular report dates back October 2022 - one of my first paid bounties. And surprisingly it's not even a very technical one.
 
 A reputable games and entertainment platform in the Philippines at `[redacted].com`, sent me an _invitation to hack_ through [HackerOne](https://hackerone.com).
 
