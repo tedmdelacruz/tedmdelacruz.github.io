@@ -14,6 +14,8 @@ I'm also a white-hat, independent cybersecurity researcher. I _legally_ hack cor
 
 I also had the privilege of tinkering with AI using OpenAI and LangChain to empower small teams in their workflow.
 
+**LinkedIn:** https://www.linkedin.com/in/tedmdelacruz/
+
 ## Education
 
 BS in Computer Science with Specialization in Software Engineering – _De La Salle University_
@@ -37,6 +39,16 @@ BS in Computer Science with Specialization in Software Engineering – _De La Sa
 - [nuclei](https://github.com/projectdiscovery/nuclei) vulnerability scanner
 - [katana](https://github.com/projectdiscovery/katana) web crawler
 - [assetwarden](https://github.com/tedmdelacruz/assetwarden) web asset monitoring
+
+## HackerOne Profile
+
+https://hackerone.com/tedminfosec
+
+![rewards](/rewards.PNG)
+
+![badges1](/badges1.PNG)
+
+![badges2](/badges2.PNG)
 
 ## Previous roles
 - Freelancer.com - Software Engineer
