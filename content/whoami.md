@@ -16,6 +16,8 @@ I also had the privilege of tinkering with AI using OpenAI and LangChain to empo
 
 **LinkedIn:** https://www.linkedin.com/in/tedmdelacruz/
 
+**GitHub:** http://github.com/tedmdelacruz/
+
 ## Education
 
 BS in Computer Science with Specialization in Software Engineering – _De La Salle University_
