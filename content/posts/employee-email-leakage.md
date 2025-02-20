@@ -1,9 +1,12 @@
 ---
-title: "Leaking thousands of employee emails at a large corporation for $250"
+title: "Leaking employee emails at a large corporation for $250"
 date: 2025-02-20T21:10:16+08:00
 draft: false
 summary: Information disclosure can be easy - and profitable. Revisiting one of my first paid bounties.
+thumbnail: https://tedmdelacruz.github.io/users-endpoint-thumbnail.jpg
 ---
+
+![Thumbnail](/users-endpoint-thumbnail.jpg)
 
 > Revisiting some of my old reports at HackerOne. This particular report dates back October 2022, one of my first paid bounties. And surprisingly it was not even a very technical one.
 
