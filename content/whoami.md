@@ -1,6 +1,6 @@
 ---
 title: "> whoami"
-date: 2023-07-19T14:53:05+08:00
+date: 2022-01-15T14:53:05+08:00
 author: Ted Mathew dela Cruz
 draft: false
 summary: I'm **Ted Mathew dela Cruz**, a software developer at Bukas.PH ...
@@ -16,7 +16,7 @@ I also had the privilege of tinkering with AI using OpenAI and LangChain to empo
 
 ## Education
 
-BS in Computer Science with Specialization in Software Engineering – _De La Salle University Laguna Campus_
+BS in Computer Science with Specialization in Software Engineering – _De La Salle University_
 
 ## Expertise
 - Software development, specializing in web and backend technologies
@@ -33,6 +33,7 @@ BS in Computer Science with Specialization in Software Engineering – _De La Sa
 ## Security Testing Stack
 - [Burp Suite](https://portswigger.net/burp) application security testing software
 - [ffuf](https://github.com/ffuf/ffuf) web fuzzer
+- [subfinder](https://github.com/projectdiscovery/subfinder) subdomain discovery
 - [nuclei](https://github.com/projectdiscovery/nuclei) vulnerability scanner
 - [katana](https://github.com/projectdiscovery/katana) web crawler
 - [assetwarden](https://github.com/tedmdelacruz/assetwarden) web asset monitoring

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+		
+		
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-59X131RVLB"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-59X131RVLB');
+        }
+      </script>
+		
+		<meta property="og:url" content="http://localhost:1313/posts/employee-email-leakage/">
+  <meta property="og:site_name" content="tedmdelacruz">
+  <meta property="og:title" content="Leaking thousands of employee emails at a large corporation for $250">
+  <meta property="og:description" content="Information disclosure can be easy - and profitable. Revisiting one of my first paid bounties.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-02-20T21:10:16+08:00">
+    <meta property="article:modified_time" content="2025-02-20T21:10:16+08:00">
+
+	
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Leaking thousands of employee emails at a large corporation for $250 &middot; tedmdelacruz</title>
+
+		
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		<link rel="stylesheet" href="/styles.css">
+		
+		<link rel="icon" href="/favicon.ico"/>
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="tedmdelacruz" />
+
+		<script src="/js/darkmode.js"></script>
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					
+						<h2 class="nav-title">tedmdelacruz</h2>
+					
+				</a>
+				<ul>
+    
+    
+        <li>
+            <a href="/whoami/">
+                
+                <span>About</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/posts/">
+                
+                <span>Posts</span>
+                
+            </a>
+        </li>
+    
+</ul>
+			</div>
+		</nav>
+
+        <div id="darkModeToggle" onclick="toggleDarkMode()">
+  &#9680; 
+</div>
+
+        
+
+<main>
+	
+
+
+        <div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Ted Mathew dela Cruz
+        <br>
+        <span>on&nbsp;</span><time datetime="2025-02-20 21:10:16 &#43;0800 CST">February 20, 2025</time>
+</div>
+
+		<h1 class="post-title">Leaking thousands of employee emails at a large corporation for $250</h1>
+<div class="post-line"></div>
+
+		
+
+		<blockquote>
+<p>Revisiting some of my old reports at HackerOne. This particular report dates back October 2022, one of my first paid bounties. And surprisingly it was not even a very technical one.</p></blockquote>
+<p>A reputable games and entertainment platform in the Philippines at <code>[redacted].com</code>, sent me an <em>invitation to hack</em> through <a href="https://hackerone.com">HackerOne</a>.</p>
+<p>Here&rsquo;s how I managed to find an <em>information disclosure</em> vulnerability at one of their domains by simply manually visiting <code>/api/users/</code>.</p>
+<h2 id="asset-discovery">Asset Discovery</h2>
+<p>As always, my first step is to enumerate the known subdomains of <code>[redacted].com</code>, and my favorite tool for that is <a href="https://github.com/projectdiscovery/subfinder">subfinder</a>. I run <code>subfinder</code> and pipe the results into a text file named <code>subdomains.txt</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>subfinder -d [redacted].com | tee subdomains.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>               __    _____           __
+</span></span><span style="display:flex;"><span>   _______  __/ /_  / __(_)___  ____/ /__  _____
+</span></span><span style="display:flex;"><span>  / ___/ / / / __ \/ /_/ / __ \/ __  / _ \/ ___/
+</span></span><span style="display:flex;"><span> (__  ) /_/ / /_/ / __/ / / / / /_/ /  __/ /
+</span></span><span style="display:flex;"><span>/____/\__,_/_.___/_/ /_/_/ /_/\__,_/\___/_/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                projectdiscovery.io
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Use with caution. You are responsible for your actions
+</span></span><span style="display:flex;"><span>Developers assume no liability and are not responsible for any misuse or damage.
+</span></span><span style="display:flex;"><span>By using subfinder, you also agree to the terms of the APIs used.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[INF] Enumerating subdomains for [redacted].com
+</span></span><span style="display:flex;"><span>connect.[redacted].com
+</span></span><span style="display:flex;"><span>shuffle.game.[redacted].com
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>paas.bk.test.[redacted].com
+</span></span><span style="display:flex;"><span>version.common.[redacted].com
+</span></span><span style="display:flex;"><span>[INF] Found 1247 subdomains for [redacted].com in 33 seconds 662 milliseconds
+</span></span></code></pre></div><p>Not all of these subdomains are live, so I probe these for live webservers using <a href="https://github.com/projectdiscovery/httpx">httpx</a>. At this point, I only care about webservers that return <code>HTTP 200 OK</code>. In order to proceed, I simply have to pipe the <code>stdout</code> of <code>subdomains.txt</code> using <code>cat</code> into <code>httpx</code> and match only live webservers like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>cat subdomains.txt | httpx -mc 200 -o http.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    __    __  __       _  __
+</span></span><span style="display:flex;"><span>   / /_  / /_/ /_____ | |/ /
+</span></span><span style="display:flex;"><span>  / __ \/ __/ __/ __ \|   /
+</span></span><span style="display:flex;"><span> / / / / /_/ /_/ /_/ /   |
+</span></span><span style="display:flex;"><span>/_/ /_/\__/\__/ .___/_/|_|
+</span></span><span style="display:flex;"><span>             /_/              
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                projectdiscovery.io
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Use with caution. You are responsible for your actions.
+</span></span><span style="display:flex;"><span>Developers assume no liability and are not responsible for any misuse or damage.
+</span></span><span style="display:flex;"><span>https://msdk.[redacted].com
+</span></span><span style="display:flex;"><span>https://ks.msdk.[redacted].com
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>https://auth.[redacted].com
+</span></span></code></pre></div><p>Now I have about text file named <code>http.txt</code> containing hundreds of live subdomains of <code>[redacted].com</code>. Now comes the hard part: manual testing each one.</p>
+<h2 id="manual-testing">Manual Testing</h2>
+<p>I stumbled upon this interesting subdomain: <code>translate.[redacted].com</code>. Looking at its functionality, it allows for cross-region teams and outsourced staff to log in and assist in translation efforts at <code>[redacted].com</code>.</p>
+<p>The site allows for <em>anyone</em> to log in with any Google account. I log in with my personal account and played around while proxying my network requests in the site through <a href="https://portswigger.net/burp">Burp Suite</a>.</p>
+<p>One of the network requests stood out for me: <code>/api/users/&lt;id&gt;/projects/</code>. Interesting, there&rsquo;s no way that manually accessing <code>/api/users/</code> would give me a list of users, right? Right&hellip;?</p>
+<p><img src="/users-endpoint.PNG" alt="users endpoint"></p>
+<p>Turns out accessing <code>GET /api/users/</code> reveals 3,900 internal emails of <code>[redacted].com</code> including employee and contractor emails.</p>
+<p>I write a detailed report and submitted it through HackerOne. A month later, I receive a reply:</p>
+<p><img src="/users-endpoint-reward.PNG" alt="reward"></p>
+<p>Not a mindblowing amount of money, but good enough for the effort involved!</p>
+<h2 id="takeaways">Takeaways</h2>
+<ul>
+<li>Manually inspecting assets is always the way to go</li>
+<li>Even if it <em>sounds stupid</em>, try it anyway. Even if it&rsquo;s a hardened target.</li>
+</ul>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/strapi-rce-writeup/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2025-02-20 22:08:02.471953231 &#43;0800 CST m=&#43;3721.996240332">2025</time> Ted Mathew dela Cruz
+			</span>
+		</footer>
+
+    </body>
+</html>
