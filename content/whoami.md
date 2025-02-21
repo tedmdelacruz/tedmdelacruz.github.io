@@ -8,11 +8,11 @@ summary: I'm **Ted Mathew dela Cruz**, a software developer at Bukas.PH ...
 
 Hello there.
 
-I'm **Ted Mathew dela Cruz**, a software developer at Bukas.PH. We help Filipino and Indonesian youth attain higher education through student loans.
+I'm **Ted Mathew dela Cruz**, a software developer at [Bukas](https://bukas.ph). We help Filipino and Indonesian youth attain higher education through student loans.
 
 I'm also a white-hat, independent cybersecurity researcher. I _legally_ hack corporations with their permission during my free time. Companies have rewarded me for finding vulnerabilities in their assets through the HackerOne bug bounty platform.
 
-I also had the privilege of tinkering with AI using OpenAI and LangChain to empower small teams in their workflow.
+I also tinker with AI to empower small teams in their workflow.
 
 **LinkedIn:** https://www.linkedin.com/in/tedmdelacruz/
 
