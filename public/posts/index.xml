@@ -6,8 +6,15 @@
     <description>Recent content in Posts on tedmdelacruz</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Feb 2025 21:10:16 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 21 Feb 2025 11:37:50 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exposed secret keys leading to multiple site defacement for $400</title>
+      <link>http://localhost:1313/posts/leaked-obs-secret-keys/</link>
+      <pubDate>Fri, 21 Feb 2025 11:37:50 +0800</pubDate>
+      <guid>http://localhost:1313/posts/leaked-obs-secret-keys/</guid>
+      <description>Finding secret keys in a JS file—this is like finding money in a trashcan. Yeah that&amp;rsquo;s a JavaScript is trash joke.</description>
+    </item>
     <item>
       <title>Leaking employee emails at a large corporation for $250</title>
       <link>http://localhost:1313/posts/employee-email-leakage/</link>
