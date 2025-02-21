@@ -9,7 +9,9 @@ summary: Finding secret keys in a JS file—this is like finding money in a tras
 
 Revisiting another old report.
 
-I found exposed secret keys in a inconspicious JavaScript file at `river.[redacted].com`, which could allow a malicious actor to deface multiple websites of a entertainment platform in the Philippines and I got $800 out of it.
+I found exposed secret keys in a inconspicious JavaScript file at `river.[redacted].com`, which could allow a malicious actor to deface multiple websites of a entertainment platform in the Philippines.
+
+And I got $800 out of it.
 
 ---
 
@@ -29,7 +31,7 @@ var define_import_meta_env_default$1 = {
 ...
 };
 ```
-> _Welp, well I be damned_
+> _Well I be damned_
 
 Interesting. But I have no idea what these keys are for. Looking up "OBS", [Huawei Cloud OBS](https://www.huaweicloud.com/intl/en-us/product/obs.html) turns up.
 
