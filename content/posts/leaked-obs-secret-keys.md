@@ -1,5 +1,5 @@
 ---
-title: "Exposed secret keys leading to multiple site defacement for $400"
+title: "Exposed secret keys leading to multiple site defacement for $800"
 date: 2025-02-21T11:37:50+08:00
 draft: false
 summary: Finding secret keys in a JS file—this is like finding money in a trashcan. Yeah that's a JavaScript is trash joke.
