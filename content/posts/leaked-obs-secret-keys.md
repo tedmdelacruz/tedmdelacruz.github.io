@@ -7,6 +7,8 @@ summary: Finding secret keys in a JS file—this is like finding money in a tras
 ![leaked keys](/leaked-obs-keys.jpg)
 > Finding secret keys in a JS file—this is like finding money in a trashcan. Yeah that's a JavaScript is trash joke.
 
+Revisiting another old report.
+
 I found exposed secret keys in a inconspicious JavaScript file at `river.[redacted].com`, which could allow a malicious actor to deface multiple websites of a entertainment platform in the Philippines and I got $800 out of it.
 
 ---
