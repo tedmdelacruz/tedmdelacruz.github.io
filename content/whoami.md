@@ -14,9 +14,11 @@ I'm also a white-hat, independent cybersecurity researcher. I _legally_ hack cor
 
 I also tinker with AI to empower small teams in their workflow.
 
-**LinkedIn:** https://www.linkedin.com/in/tedmdelacruz/
+I'm not really looking for a new job, but I'm open to consultation.
 
-**GitHub:** http://github.com/tedmdelacruz/
+Hit me up on [**LinkedIn**](https://www.linkedin.com/in/tedmdelacruz/) or drop an email at [tedmathewdelacruz@gmail.com](mailto:tedmathewdelacruz@gmail.com)
+
+You can also check my work at [**GitHub**](http://github.com/tedmdelacruz/).
 
 ## Education
 
