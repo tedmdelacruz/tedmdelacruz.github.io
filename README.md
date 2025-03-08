@@ -39,3 +39,7 @@ git pull origin master
 cd /path/to/static-site
 git commit ...
 ```
+
+## Adding custom CSS without editing the theme
+
+To add any custom CSS, edit the `static/styles.css` styesheet
