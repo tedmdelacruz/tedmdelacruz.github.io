@@ -2,6 +2,6 @@ div.highlight {
 	background-color: #272822;
 }
 
-.post p {
+.post p, .post li{
 	line-height: 2em;
 }
