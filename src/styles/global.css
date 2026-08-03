@@ -213,7 +213,6 @@
   @media (min-width: 1024px) {
     .sidebar {
       position: sticky;
-      /* Clears the header plus a little breathing room. */
       top: 4.5rem;
       padding-left: 2.5rem;
       border-left: 1px solid var(--border);
@@ -724,7 +723,6 @@
     font-family: var(--font-display);
     font-weight: 600;
     letter-spacing: -0.015em;
-    /* Anchor links land below the sticky header, not behind it. */
     scroll-margin-top: 5rem;
   }
 
