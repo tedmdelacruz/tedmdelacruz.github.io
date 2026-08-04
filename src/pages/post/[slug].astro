@@ -91,13 +91,15 @@ const structuredData = {
   <main id="content" class="outer">
     <article>
       <header class="canvas pt-10 md:pt-14">
-        <p class="meta">
-          <span>
-            By <a href={authorHref} class="link-sweep font-semibold">{data.author.name}</a> in{" "}
-            <a href={categoryHref(data.category)} class="link-sweep font-semibold">{data.category}</a>
+        <p class="meta post-meta">
+          <span class="post-meta__byline">
+            By <a href={authorHref} class="link-sweep post-meta__link">{data.author.name}</a> in{" "}
+            <a href={categoryHref(data.category)} class="link-sweep post-meta__link">{data.category}</a>
           </span>
-          <span class="meta-accent"><time datetime={data.date.toISOString()}>{formatDate(data.date, "long")}</time></span>
-          <span>{readingLabel(post)}</span>
+          <span class="post-meta__dates">
+            <span class="meta-accent"><time datetime={data.date.toISOString()}>{formatDate(data.date, "long")}</time></span>
+            <span>{readingLabel(post)}</span>
+          </span>
         </p>
 
         <h1 class="article-title">{data.title}</h1>
@@ -262,6 +264,47 @@ const structuredData = {
   </script>
 
   <style>
+    .post-meta {
+      column-gap: 0.55rem;
+    }
+
+    /* The byline is a sentence, not a list of dotted items, so it lays out as
+       inline text and keeps normal word spacing instead of the flex gap. */
+    .post-meta__byline {
+      display: inline;
+    }
+
+    .post-meta__link {
+      color: var(--foreground);
+    }
+
+    /* Mirrors `.meta > *`: the dot only takes its 2px box inside a flex item. */
+    .post-meta__dates > * {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .post-meta__dates > * + *::before {
+      width: 2px;
+      height: 2px;
+      content: "";
+      background: var(--muted-foreground);
+      border-radius: 50%;
+    }
+
+    /* Once the row no longer fits, date and read time drop to a line of their
+       own rather than orphaning the read time under the byline. */
+    @media (max-width: 40rem) {
+      .post-meta__dates {
+        flex-basis: 100%;
+      }
+
+      .post-meta__dates::before {
+        display: none;
+      }
+    }
+
     .article-title {
       margin: 1.25rem 0 0;
       font-family: var(--font-display);
