@@ -22,8 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: withastro/action@v3
-        # withastro/action automatically runs `npm ci` + `npm run build`
-        # and uploads the `dist/` directory as a Pages artifact.
+        with:
+          node-version: 22
 
   deploy:
     name: Deploy
