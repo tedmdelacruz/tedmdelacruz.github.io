@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import NewsletterSignup from "@/components/NewsletterSignup.astro";
 import PostCard from "@/components/PostCard.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
@@ -50,9 +49,6 @@ const hasMore = rest.length > feed.length;
             <h2 id="about-heading" class="section-title">About</h2>
             <p class="text-lg font-semibold tracking-tight">{siteConfig.name}</p>
             <p class="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">{siteConfig.about}</p>
-            <div class="mt-7 border-t border-border pt-6">
-              <NewsletterSignup />
-            </div>
           </section>
 
           {featured.length > 0 && (

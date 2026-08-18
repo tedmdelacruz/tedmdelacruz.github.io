@@ -16,6 +16,12 @@ const shikiConfig = /** @type {const} */ ({
 
 export default defineConfig({
   site: siteConfig.siteUrl,
+  redirects: {
+    "/posts/leaked-obs-secret-keys": "/post/exposed-secret-keys-site-defacement-for-800",
+    "/posts/employee-email-leakage": "/post/leaking-employee-emails-for-250",
+    "/posts/strapi-rce-writeup": "/post/strapi-rce-billion-dollar-company",
+    "/whoami": "/about",
+  },
   integrations: [
     sitemap({
       filter: (page) => page !== new URL("/search/", siteConfig.siteUrl).toString(),

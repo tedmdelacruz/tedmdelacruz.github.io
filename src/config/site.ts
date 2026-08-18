@@ -1,20 +1,20 @@
 export const siteConfig = {
   /** Wordmark shown in the header and footer. Monograph uses text, never a logo image. */
-  name: "Monograph",
-  tagline: "A quiet place for long-form writing",
-  title: "Monograph - A minimal Astro blog theme",
+  name: "tedm.dev",
+  tagline: "Software development & security research",
+  title: "tedm.dev - Ted Mathew dela Cruz",
   description:
-    "A text-first Astro theme for essays, notes, and long-form writing, with a command-palette search and a light/dark reading mode.",
-  siteUrl: "https://monograph.xocoweb.workers.dev",
-  authorName: "Andrei Alba",
-  email: "hello@example.com",
+    "Bug bounty writeups, software development notes, and security research by Ted Mathew dela Cruz.",
+  siteUrl: "https://tedm.dev",
+  authorName: "Ted Mathew dela Cruz",
+  email: "tedmathewdelacruz@gmail.com",
   language: "en",
   dateLocale: "en-US",
   locale: "en_US",
   socialImage: "/og-image.png",
   /** Shown in the home sidebar "About" card. */
   about:
-    "Monograph is a reading-first Astro theme. Notes on building software, published when there is something worth saying.",
+    "Notes on software development, bug bounty writeups, and security research.",
   /**
    * Both forms below ship enabled with an empty `action`, which makes them fully
    * interactive demos that submit nowhere: a small script confirms the submit
@@ -22,7 +22,7 @@ export const siteConfig = {
    * real submissions, or set `enabled: false` to disable the controls outright.
    */
   newsletter: {
-    enabled: true,
+    enabled: false,
     action: "",
     method: "post",
     emailFieldName: "email",
@@ -36,10 +36,8 @@ export const siteConfig = {
     responseTime: "Replies usually go out within two business days.",
   },
   socials: [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "TikTok", href: "https://www.tiktok.com" },
-    { label: "YouTube", href: "https://www.youtube.com" },
-    { label: "RSS", href: "/rss.xml" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/tedmdelacruz/" },
+    { label: "GitHub", href: "https://github.com/tedmdelacruz" },
   ],
 };
 
@@ -53,6 +51,4 @@ export const navigation = [
 /** Secondary navigation rendered in the footer. */
 export const footerNavigation = [
   { label: "Contact", href: "/contact/" },
-  { label: "Privacy", href: "/privacy/" },
-  { label: "RSS", href: "/rss.xml" },
 ];

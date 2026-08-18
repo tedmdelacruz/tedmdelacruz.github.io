@@ -60,12 +60,12 @@
 
   /* Set --font-display to var(--font-serif) for an editorial serif masthead and
      headline set; body copy and UI keep the sans stack. */
-  --font-sans:
+  --font-sans: "Libre Baskerville", "Times New Roman", Times, serif;
+  --font-display: var(--font-sans);
+  --font-serif: "Libre Baskerville", "Times New Roman", Times, serif;
+  --font-ui:
     "Geist", Inter, "Segoe UI", "Helvetica Neue", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, Arial, sans-serif;
-  --font-display: var(--font-sans);
-  --font-serif:
-    "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", ui-serif, serif;
   --font-mono:
     "Geist Mono", ui-monospace, "SFMono-Regular", "Cascadia Code", "JetBrains Mono", Consolas,
     Menlo, "Liberation Mono", monospace;
