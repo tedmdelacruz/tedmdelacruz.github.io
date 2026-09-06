@@ -80,7 +80,7 @@ It also changes how engineers relate to their own work. Ownership doesn't end at
 
 ---
 
-That Tuesday afternoon at Cebuana Lhuillier, I wasn't doing anything extraordinary. I was just paying PHP 50.00 at a counter. But that small act of testing my own feature in the real world — standing in line, filling out the form, waiting for the SMS — taught me more about our borrowers' experience than any test suite ever could.
+That Tuesday afternoon at Cebuana Lhuillier, I wasn't doing anything extraordinary. I was just paying PHP 50.00 at a counter. But that small act of testing my own feature in the real world: standing in line, filling out the form, waiting for the SMS taught me more about our borrowers' experience than any test suite ever could.
 
 Being hands-on is a series of small, deliberate choices: sitting with a co-worker long enough to notice their workaround, showing up at a campus even when you have a sprint to finish, putting your name on a feature and meaning it.
 
