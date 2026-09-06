@@ -17,9 +17,9 @@ const allPosts = visiblePosts(await getCollection("posts"));
   <main id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
-        <p class="eyebrow">About</p>
+        <p class="eyebrow">About Me</p>
         <h1 class="pagehead-title">Ted Mathew dela Cruz</h1>
-        <p class="pagehead-description">Software developer & security researcher based in the Philippines.</p>
+        <p class="pagehead-description">Software developer & independent security researcher based in the Philippines.</p>
       </header>
 
       <div class="prose">
@@ -27,7 +27,7 @@ const allPosts = visiblePosts(await getCollection("posts"));
           Hello there.
         </p>
         <p>
-          I'm a software developer at <a href="https://bukas.ph">Bukas</a>. We help Filipino and
+          I'm Ted, a software developer at <a href="https://bukas.ph">Bukas</a>. We help Filipino and
           Indonesian youth attain higher education through student loans.
         </p>
         <p>
@@ -39,8 +39,7 @@ const allPosts = visiblePosts(await getCollection("posts"));
           I also tinker with AI to empower small teams in their workflow.
         </p>
         <p>
-          I'm not really looking for a new job, but I'm open to consultation. Hit me up on{" "}
-          <a href="https://www.linkedin.com/in/tedmdelacruz/"><strong>LinkedIn</strong></a> or drop an
+          Hit me up on <a href="https://www.linkedin.com/in/tedmdelacruz/"><strong>LinkedIn</strong></a> or drop an
           email at <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
         </p>
         <p>
@@ -48,7 +47,7 @@ const allPosts = visiblePosts(await getCollection("posts"));
         </p>
 
         <h2>Education</h2>
-        <p>BS in Computer Science with Specialization in Software Engineering – <em>De La Salle University</em></p>
+        <p>BS in Computer Science – <em>De La Salle University</em></p>
 
         <h2>Expertise</h2>
         <ul>
@@ -59,11 +58,30 @@ const allPosts = visiblePosts(await getCollection("posts"));
           <li>Security testing of public facing assets of corporations</li>
         </ul>
 
-        <h2>Software Development Stack</h2>
+        <h2>Software Development / AI Stack</h2>
         <ul>
           <li>Python, JavaScript, ShellScript</li>
-          <li>MySQL, PostgreSQL</li>
-          <li>OpenAI, LangChain</li>
+          <li>Amazon Web Services, Google Cloude Platform, Github</li>
+          <li>PostgreSQL, Redis, RabbitMQ</li>
+          <li>Docker, Kubernetes</li>
+          <li>PydanticAI, LangChain, pgvector</li>
+          <li>Claude Code, GPT 5.x</li>
+        </ul>
+
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <a href="https://freemarket.com">Freemarket.com</a> <small>PHP / Postgres / Elasticsearch</small>
+          </li>
+          <li>
+            <a href="https://bukas.ph">Bukas.PH backend API</a> <small>Django / Postgres / Redis / RabbitMQ</small>
+          </li>
+          <li>
+            <a href="https://jared.bukas.ph">Jared - AI for Schools</a> <small>Django Ninja / Postgres / RabbitMQ / Pydantic AI / LangChain</small>
+          </li>
+          <li>
+            <a href="https://collections.bukas.ph">Bukas Collections for Schools</a> <small>Django Ninja / Postgres / RabbitMQ / Twilio</small>
+          </li>
         </ul>
 
         <h2>Security Testing Stack</h2>

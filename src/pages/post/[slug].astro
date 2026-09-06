@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
-import LocalIcon from "@/components/LocalIcon.astro";
 import PostCard from "@/components/PostCard.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
@@ -47,25 +46,6 @@ const articleUrl = new URL(postHref(post), siteConfig.siteUrl).toString();
 const socialImage = data.cover
   ? new URL(data.cover.src.src, siteConfig.siteUrl).toString()
   : new URL(siteConfig.socialImage, siteConfig.siteUrl).toString();
-const encodedUrl = encodeURIComponent(articleUrl);
-const encodedTitle = encodeURIComponent(data.title);
-const shareLinks: { label: string; icon: "twitter-x" | "facebook" | "linkedin"; href: string }[] = [
-  {
-    label: "X",
-    icon: "twitter-x",
-    href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-  },
-  {
-    label: "Facebook",
-    icon: "facebook",
-    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-  },
-  {
-    label: "LinkedIn",
-    icon: "linkedin",
-    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-  },
-];
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -110,31 +90,6 @@ const structuredData = {
             <span>Updated <time datetime={data.updatedDate.toISOString()}>{formatDate(data.updatedDate)}</time></span>
           </p>
         )}
-
-        <div class="mt-8 flex flex-wrap items-center gap-2 border-t border-border pt-6" role="group" aria-labelledby="share-heading">
-          <h2 id="share-heading" class="eyebrow mr-1">Share</h2>
-          {shareLinks.map((link) => (
-            <a
-              href={link.href}
-              target="_blank"
-              rel="noreferrer"
-              class="share-btn"
-              aria-label={`Share ${data.title} on ${link.label}`}
-            >
-              <LocalIcon name={link.icon} className="h-4 w-4" />
-            </a>
-          ))}
-          <button
-            type="button"
-            class="share-btn"
-            data-copy-link
-            data-copy-url={articleUrl}
-            aria-label={`Copy link to ${data.title}`}
-          >
-            <LocalIcon name="link-45deg" className="h-4 w-4" />
-          </button>
-          <p class="ml-1 text-xs text-muted-foreground" aria-live="polite" data-copy-status></p>
-        </div>
       </header>
 
       {data.cover && (
@@ -206,23 +161,6 @@ const structuredData = {
   <SiteFooter />
 
   <script is:inline>
-    document.querySelectorAll("[data-copy-link]").forEach((button) => {
-      const status = button.parentElement?.querySelector("[data-copy-status]");
-
-      button.addEventListener("click", async () => {
-        const url = button.getAttribute("data-copy-url");
-        if (!url) return;
-
-        try {
-          if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
-          await navigator.clipboard.writeText(url);
-          if (status) status.textContent = "Link copied";
-        } catch {
-          if (status) status.textContent = "Copy failed";
-        }
-      });
-    });
-
     /* Progressive enhancement: every code block in the article body gets a copy
        button, added client-side so the rendered HTML stays plain. */
     document.querySelectorAll(".prose pre").forEach((pre, index) => {
@@ -264,6 +202,14 @@ const structuredData = {
   </script>
 
   <style>
+    /* Wider than the shared `.canvas` reading column so the article aligns
+       more closely with the header/footer edges on desktop. */
+    @media (min-width: 1024px) {
+      .canvas {
+        max-width: 56rem;
+      }
+    }
+
     .post-meta {
       column-gap: 0.55rem;
     }
@@ -345,30 +291,6 @@ const structuredData = {
       margin: 0.75rem auto 0;
       color: var(--muted-foreground);
       font-size: 0.8125rem;
-    }
-
-    .share-btn {
-      display: inline-grid;
-      width: 2.5rem;
-      height: 2.5rem;
-      place-items: center;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted-foreground);
-      cursor: pointer;
-      padding: 0;
-      border-radius: var(--radius-full);
-      transition:
-        border-color var(--duration) var(--ease-out),
-        color var(--duration) var(--ease-out),
-        transform var(--duration) var(--ease-out);
-    }
-
-    .share-btn:hover,
-    .share-btn:focus-visible {
-      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-      color: var(--accent);
-      transform: translateY(-2px);
     }
   </style>
 </BaseLayout>

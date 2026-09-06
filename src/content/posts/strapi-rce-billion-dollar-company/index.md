@@ -1,11 +1,11 @@
 ---
-title: "Remote code execution in a billion-dollar publicly traded company"
-excerpt: "How I legally hacked a billion-dollar company listed on the NYSE—finding CVE-2023-22621 in the wild and achieving full remote code execution."
+title: "Full server takeover: Legally hacking an enterprise for $1,000"
+excerpt: "How I legally hacked an enterprise with the CVE-2023-22621 in the wild and achieving full remote code execution."
 category: "Security"
 date: 2024-02-10
 author:
   name: "Ted Mathew dela Cruz"
-  role: "Software developer & security researcher"
+  role: "Software developer & independent security researcher"
 draft: false
 ---
 
