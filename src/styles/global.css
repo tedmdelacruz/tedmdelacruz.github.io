@@ -777,6 +777,7 @@
     margin: 0.5rem 0;
     font-size: inherit;
     color: inherit;
+    text-align: left;
   }
 
   .prose blockquote > :first-child {
