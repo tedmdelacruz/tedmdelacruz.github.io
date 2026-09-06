@@ -72,7 +72,7 @@ At Bukas, we encourage everyone to join the "campus caravans" at our partner sch
 
 ## "Hands-on" virtue #3: Be Visible
 
-Whenever a significant new feature gets shipped, we encourage our engineers to announce it in our Slack channels themselves. Not for credit or self-promotion, but for _accountability_. I always end these announcements with "Let me know if anything goes wrong!" so my co-workers know they can just ping me directly without having to file tickets or loop in a product manager. I create the tickets myself and loop in the product manager myself.
+Whenever a significant new feature gets shipped, we encourage our engineers to announce it in our Slack channels themselves. Not for credit or self-promotion, but for _accountability_. I always end these announcements with "Let me know if anything goes wrong!" so my co-workers know they can just ping me directly without having to file tickets or loop in a product manager. I sometimes create the tickets and loop in the product manager myself.
 
 This small habit does something powerful over time: it puts a face and a name on every feature. When the finance team knows exactly who built the disbursement flow, they don't hesitate to reach out when something feels off. That's how you get the "hey, this might be nothing, but the numbers on this batch look weird" message at 2pm instead of a production incident at 2am.
 
